@@ -12,6 +12,9 @@ function getBranchName(eventName, payload) {
         case 'pull_request':
             branchName = payload.pull_request.head.ref;
             break;
+        case 'create':
+            branchName = payload.ref.replace('refs/heads/', '');
+            break;
         default:
             throw new Error(`Invalid event name: ${eventName}`);
     }
